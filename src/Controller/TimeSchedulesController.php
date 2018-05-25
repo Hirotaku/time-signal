@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\TimeSchedule;
 
 /**
  * TimeSchedules Controller
@@ -47,6 +48,8 @@ class TimeSchedulesController extends AppController
      */
     public function add()
     {
+        $dayOfWeekOptions = TimeSchedule::DAY_OF_WEEK_OPTIONS;
+
         $timeSchedule = $this->TimeSchedules->newEntity();
         if ($this->request->is('post')) {
             $timeSchedule = $this->TimeSchedules->patchEntity($timeSchedule, $this->request->getData());
@@ -57,7 +60,7 @@ class TimeSchedulesController extends AppController
             }
             $this->Flash->error(__('The time schedule could not be saved. Please, try again.'));
         }
-        $this->set(compact('timeSchedule'));
+        $this->set(compact('timeSchedule', 'dayOfWeekOptions'));
     }
 
     /**

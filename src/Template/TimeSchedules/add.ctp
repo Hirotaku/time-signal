@@ -13,7 +13,7 @@
             <?= $this->Form->input('day', ['type' => 'text', 'class' => 'form-control datepicker']); ?>
           </div>
           <div class="col-lg-4">
-              <?= $this->Form->input('day_of_week', ['type' => 'text', 'class' => 'form-control']); ?>
+              <?= $this->Form->input('day_of_week', ['type' => 'select', 'options' => $dayOfWeekOptions, 'class' => 'form-control']); ?>
           </div>
           <div class="col-lg-4">
               <?= $this->Form->input('time', ['type' => 'text', 'class' => 'form-control']); ?>
