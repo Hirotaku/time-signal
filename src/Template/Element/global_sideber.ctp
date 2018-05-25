@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper">
     <div class="logo">
         <a class="simple-text">
-            MENU
+            Time-Signal
         </a>
     </div>
 

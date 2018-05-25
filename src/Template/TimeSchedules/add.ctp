@@ -1,5 +1,3 @@
-<?= $this->Html->css('build/jquery.datetimepicker.min.css') ?>
-
 <div class="row">
   <div class="col-lg-8 col-lg-offset-2">
     <div class="card">
