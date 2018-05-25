@@ -10,17 +10,26 @@
           <?= $this->Form->create($timeSchedule) ?>
         <div class="row">
           <div class="col-lg-4">
-            <?= $this->Form->input('day', ['type' => 'text', 'class' => 'form-control datepicker', ]); ?>
+            <?= $this->Form->input('day', ['type' => 'text', 'class' => 'form-control datepicker']); ?>
+          </div>
+          <div class="col-lg-4">
+              <?= $this->Form->input('day_of_week', ['type' => 'text', 'class' => 'form-control']); ?>
+          </div>
+          <div class="col-lg-4">
+              <?= $this->Form->input('time', ['type' => 'text', 'class' => 'form-control']); ?>
           </div>
         </div>
-          <?php
-          echo $this->Form->control('day_of_week');
-          echo $this->Form->control('time');
-          echo $this->Form->control('track');
-          echo $this->Form->control('start_track_time');
-          echo $this->Form->control('end_track_time');
-          ?>
-
+        <div class="row">
+          <div class="col-lg-4">
+              <?= $this->Form->input('track', ['type' => 'text', 'class' => 'form-control']); ?>
+          </div>
+          <div class="col-lg-4">
+              <?= $this->Form->input('start_track_time', ['type' => 'text', 'class' => 'form-control']); ?>
+          </div>
+          <div class="col-lg-4">
+              <?= $this->Form->input('end_track_time', ['type' => 'text', 'class' => 'form-control']); ?>
+          </div>
+        </div>
 
 
           <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-info btn-fill btn-wd']) ?>
