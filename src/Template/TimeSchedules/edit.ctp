@@ -5,7 +5,7 @@
         <h4 class="title">Edit Signal</h4>
       </div>
       <div class="content">
-          <?= $this->Form->create($timeSchedule) ?>
+          <?= $this->Form->create($timeSchedule, ['validate' => false]) ?>
           <?= $this->partial('form'); ?>
         <div class="row">
           <div class="col-lg-4 col-lg-offset-4">

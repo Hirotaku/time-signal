@@ -49,30 +49,55 @@ class TimeSchedulesTable extends Table
     {
         $validator
             ->date('day')
-            ->requirePresence('day', 'create');
+            ->allowEmpty('day');
 
         $validator
             ->integer('day_of_week')
-            ->requirePresence('day_of_week', 'create')
             ->notEmpty('day_of_week');
 
         $validator
             ->time('time')
-            ->requirePresence('time', 'create')
             ->notEmpty('time');
 
         $validator
             ->scalar('track')
-            ->requirePresence('track', 'create');
+            ->allowEmpty('track');
 
         $validator
             ->integer('start_track_time')
-            ->requirePresence('start_track_time', 'create');
+            ->allowEmpty('start_track_time');
 
         $validator
             ->integer('end_track_time')
-            ->requirePresence('end_track_time', 'create');
+            ->allowEmpty('end_track_time');
 
         return $validator;
+    }
+
+    /**
+     * isUniqueRegularSignal
+     * 重複したデータが存在しないかチェック
+     *
+     */
+    public function isUniqueRegularSignal($saveData)
+    {
+        //dayを指定しているか
+        $query = $this->find()
+            ->where([
+                'day_of_week' => $saveData->day_of_week,
+                'time' => $saveData->time
+            ]);
+        if (isset($saveData->day) && !is_null($saveData->day)) {
+            $query->where(['day' => $saveData->day]);
+        }
+
+        $signal = $query->all();
+
+        if ($signal->isEmpty()) {
+            //ユニークなし
+            return true;
+        }
+
+        return false;
     }
 }

@@ -15,6 +15,22 @@ use Cake\I18n\FrozenTime;
 class TimeSchedulesController extends AppController
 {
 
+    public function initialize()
+    {
+        parent::initialize();
+
+        FrozenDate::setToStringFormat('yyyy-MM-dd');
+        FrozenTime::setToStringFormat('HH:mm');
+    }
+
+    public $paginate = [
+        'limit' => 20,
+        'order' => [
+            'day_of_week' => 'ASC',
+            'time' => 'ASC',
+        ]
+    ];
+
     /**
      * Index method
      *
@@ -22,9 +38,10 @@ class TimeSchedulesController extends AppController
      */
     public function index()
     {
+        $dayOfWeekOptions = TimeSchedule::DAY_OF_WEEK_OPTIONS;
         $timeSchedules = $this->paginate($this->TimeSchedules);
 
-        $this->set(compact('timeSchedules'));
+        $this->set(compact('timeSchedules', 'dayOfWeekOptions'));
     }
 
     /**
@@ -36,11 +53,12 @@ class TimeSchedulesController extends AppController
      */
     public function view($id = null)
     {
+        $dayOfWeekOptions = TimeSchedule::DAY_OF_WEEK_OPTIONS;
         $timeSchedule = $this->TimeSchedules->get($id, [
             'contain' => []
         ]);
 
-        $this->set('timeSchedule', $timeSchedule);
+        $this->set(compact('timeSchedule', 'dayOfWeekOptions'));
     }
 
     /**
@@ -55,6 +73,11 @@ class TimeSchedulesController extends AppController
         $timeSchedule = $this->TimeSchedules->newEntity();
         if ($this->request->is('post')) {
             $timeSchedule = $this->TimeSchedules->patchEntity($timeSchedule, $this->request->getData());
+
+            if (!$this->TimeSchedules->isUniqueRegularSignal($timeSchedule)) {
+
+            }
+
             if ($this->TimeSchedules->save($timeSchedule)) {
                 $this->Flash->success(__('The time schedule has been saved.'));
 
@@ -74,9 +97,6 @@ class TimeSchedulesController extends AppController
      */
     public function edit($id = null)
     {
-        FrozenDate::setToStringFormat('yyyy-MM-dd');
-        FrozenTime::setToStringFormat('HH:mm');
-
         $dayOfWeekOptions = TimeSchedule::DAY_OF_WEEK_OPTIONS;
 
         $timeSchedule = $this->TimeSchedules->get($id, [
@@ -84,6 +104,12 @@ class TimeSchedulesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $timeSchedule = $this->TimeSchedules->patchEntity($timeSchedule, $this->request->getData());
+
+            if (!$this->TimeSchedules->isUniqueRegularSignal($timeSchedule)) {
+                $this->Flash->error(__('すでに同様の日時で設定されています'));
+                return $this->redirect(['action' => 'index']);
+            }
+
             if ($this->TimeSchedules->save($timeSchedule)) {
                 $this->Flash->success(__('The time schedule has been saved.'));
 
