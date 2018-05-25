@@ -10,6 +10,7 @@
         "cakephp/migrations": "^1.8.0",
         "cakephp/plugin-installer": "^1.0",
         "josegonzalez/dotenv": "3.*",
+        "kozo/partial": "^3.0",
         "mobiledetect/mobiledetectlib": "2.*"
     },
     "require-dev": {
