@@ -13,32 +13,32 @@ class CreateFirstBases extends AbstractMigration
     public function change()
     {
         $table = $this->table('time_schedules');
-        $table->addColumn('day', 'text', [
-            'null' => false,
+        $table->addColumn('day', 'date', [
+            'null' => true,
         ]);
-        $table->addColumn('day_of_week', 'text', [
-            'null' => false,
+        $table->addColumn('day_of_week', 'integer', [
+            'null' => true,
         ]);
-        $table->addColumn('time', 'datetime', [
-            'null' => false,
+        $table->addColumn('time', 'time', [
+            'null' => true,
         ]);
         $table->addColumn('track', 'text', [
-            'null' => false,
+            'null' => true,
         ]);
-        $table->addColumn('start_track_time', 'time', [
-            'null' => false,
+        $table->addColumn('start_track_time', 'integer', [
+            'null' => true,
         ]);
-        $table->addColumn('end_track_time', 'time', [
-            'null' => false,
+        $table->addColumn('end_track_time', 'integer', [
+            'null' => true,
         ]);
         $table->addColumn('deleted', 'datetime', [
-            'null' => false,
+            'null' => true,
         ]);
         $table->addColumn('created', 'datetime', [
-            'null' => false,
+            'null' => true,
         ]);
         $table->addColumn('modified', 'datetime', [
-            'null' => false,
+            'null' => true,
         ]);
         $table->create();
     }
