@@ -66,11 +66,11 @@ $cakeDescription = 'Time-Signal';
   <div class="sidebar" data-background-color="white" data-active-color="danger">
       <?= $this->element('global_sideber') ?>
   </div>
-    <?= $this->Flash->render() ?>
   <div class="main-panel">
     <div class="content">
       <div class="container-fluid">
-        <?= $this->fetch('content') ?>
+          <?= $this->Flash->render() ?>
+          <?= $this->fetch('content') ?>
       </div>
     </div>
   </div>

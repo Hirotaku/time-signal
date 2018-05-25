@@ -1,60 +1,53 @@
 <?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\TimeSchedule $timeSchedule
- */
+use App\Model\Entity\TimeSchedule;
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Time Schedule'), ['action' => 'edit', $timeSchedule->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Time Schedule'), ['action' => 'delete', $timeSchedule->id], ['confirm' => __('Are you sure you want to delete # {0}?', $timeSchedule->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Time Schedules'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Time Schedule'), ['action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="timeSchedules view large-9 medium-8 columns content">
-    <h3><?= h($timeSchedule->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($timeSchedule->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Time') ?></th>
-            <td><?= h($timeSchedule->time) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Start Track Time') ?></th>
-            <td><?= h($timeSchedule->start_track_time) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('End Track Time') ?></th>
-            <td><?= h($timeSchedule->end_track_time) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Deleted') ?></th>
-            <td><?= h($timeSchedule->deleted) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($timeSchedule->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($timeSchedule->modified) ?></td>
-        </tr>
-    </table>
-    <div class="row">
-        <h4><?= __('Day') ?></h4>
-        <?= $this->Text->autoParagraph(h($timeSchedule->day)); ?>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="title">Time Schedule</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><?= __('日付') ?></th>
+                <td><?= h($timeSchedule->day) ?></td>
+              </tr>
+              <tr>
+                <th scope="row"><?= __('曜日') ?></th>
+                <td><?= h(TimeSchedule::DAY_OF_WEEK_OPTIONS[$timeSchedule->day_of_week]) ?></td>
+              </tr>
+              <tr>
+                <th scope="row"><?= __('時刻') ?></th>
+                <td><?= h($timeSchedule->time) ?></td>
+              </tr>
+              <tr>
+                <th scope="row"><?= __('曲名') ?></th>
+                <td><?= h($timeSchedule->track) ?></td>
+              </tr>
+              <tr>
+                <th scope="row"><?= __('再生開始時間(s)') ?></th>
+                <td><?= h($timeSchedule->start_track_time) ?></td>
+              </tr>
+              <tr>
+                <th scope="row"><?= __('再生終了時間(s)') ?></th>
+                <td><?= h($timeSchedule->end_track_time) ?></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
-    <div class="row">
-        <h4><?= __('Day Of Week') ?></h4>
-        <?= $this->Text->autoParagraph(h($timeSchedule->day_of_week)); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Track') ?></h4>
-        <?= $this->Text->autoParagraph(h($timeSchedule->track)); ?>
-    </div>
+
+  </div>
+
 </div>
