@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\Entity\TimeSchedule;
+use Cake\I18n\FrozenDate;
+use Cake\I18n\FrozenTime;
 
 /**
  * TimeSchedules Controller
@@ -72,6 +74,11 @@ class TimeSchedulesController extends AppController
      */
     public function edit($id = null)
     {
+        FrozenDate::setToStringFormat('yyyy-MM-dd');
+        FrozenTime::setToStringFormat('HH:mm');
+
+        $dayOfWeekOptions = TimeSchedule::DAY_OF_WEEK_OPTIONS;
+
         $timeSchedule = $this->TimeSchedules->get($id, [
             'contain' => []
         ]);
@@ -84,7 +91,7 @@ class TimeSchedulesController extends AppController
             }
             $this->Flash->error(__('The time schedule could not be saved. Please, try again.'));
         }
-        $this->set(compact('timeSchedule'));
+        $this->set(compact('timeSchedule', 'dayOfWeekOptions'));
     }
 
     /**

@@ -1,22 +1,48 @@
 <div class="row">
     <div class="col-lg-4">
-        <?= $this->Form->input('day', ['type' => 'text', 'class' => 'form-control datepicker datetime']); ?>
+        <label>日付</label>
+        <?= $this->Form->input('day', [
+            'label' => false, 'type' => 'text', 'class' => 'form-control datepicker datetime'
+            ]); ?>
     </div>
     <div class="col-lg-4">
-        <?= $this->Form->input('day_of_week', ['type' => 'select', 'options' => $dayOfWeekOptions, 'class' => 'form-control']); ?>
+        <label>曜日<label style="color: red">*</label></label>
+        <?= $this->Form->input('day_of_week', [
+            'label' => false, 'type' => 'select', 'options' => $dayOfWeekOptions, 'class' => 'form-control'
+        ]); ?>
     </div>
     <div class="col-lg-4">
-        <?= $this->Form->input('time', ['type' => 'text', 'class' => 'form-control time']); ?>
+        <label>時刻<label style="color: red">*</label></label>
+        <?= $this->Form->input('time', [
+            'label' => false, 'type' => 'text', 'class' => 'form-control time'
+        ]); ?>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-4">
-        <?= $this->Form->input('track', ['type' => 'text', 'class' => 'form-control']); ?>
+        <label>曲名（ファイル名）<label style="color: red">*</label></label>
+        <?= $this->Form->input('track', [
+            'label' => false, 'type' => 'text', 'class' => 'form-control'
+        ]); ?>
     </div>
     <div class="col-lg-4">
-        <?= $this->Form->input('start_track_time', ['type' => 'number', 'class' => 'form-control']); ?>
+        <label>再生開始時間</label>
+        <?= $this->Form->input('start_track_time', [
+            'label' => false, 'type' => 'number', 'class' => 'form-control'
+        ]); ?>
     </div>
     <div class="col-lg-4">
-        <?= $this->Form->input('end_track_time', ['type' => 'number', 'class' => 'form-control']); ?>
+        <label>再生終了時間</label>
+        <?= $this->Form->input('end_track_time', [
+            'label' => false, 'type' => 'number', 'class' => 'form-control'
+        ]); ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h5>注意事項</h5>
+        <p>※日付指定しない場合は定期実行になります</p>
+        <p>※再生したいファイルは以下の場所に設置してください。</p>
+        <p>/home/pi/time-signal/</p>
     </div>
 </div>
