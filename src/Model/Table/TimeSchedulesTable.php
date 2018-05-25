@@ -48,43 +48,30 @@ class TimeSchedulesTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->date('day')
+            ->requirePresence('day', 'create');
 
         $validator
-            ->scalar('day')
-            ->requirePresence('day', 'create')
-            ->notEmpty('day');
-
-        $validator
-            ->scalar('day_of_week')
+            ->integer('day_of_week')
             ->requirePresence('day_of_week', 'create')
             ->notEmpty('day_of_week');
 
         $validator
-            ->dateTime('time')
+            ->time('time')
             ->requirePresence('time', 'create')
             ->notEmpty('time');
 
         $validator
             ->scalar('track')
-            ->requirePresence('track', 'create')
-            ->notEmpty('track');
+            ->requirePresence('track', 'create');
 
         $validator
-            ->time('start_track_time')
-            ->requirePresence('start_track_time', 'create')
-            ->notEmpty('start_track_time');
+            ->integer('start_track_time')
+            ->requirePresence('start_track_time', 'create');
 
         $validator
-            ->time('end_track_time')
-            ->requirePresence('end_track_time', 'create')
-            ->notEmpty('end_track_time');
-
-        $validator
-            ->dateTime('deleted')
-            ->requirePresence('deleted', 'create')
-            ->notEmpty('deleted');
+            ->integer('end_track_time')
+            ->requirePresence('end_track_time', 'create');
 
         return $validator;
     }

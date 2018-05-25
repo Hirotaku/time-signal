@@ -68,10 +68,10 @@ $cakeDescription = 'Time-Signal';
   </div>
     <?= $this->Flash->render() ?>
   <div class="main-panel">
-      <?= $this->element('global_header') ?>
     <div class="content">
+      <?= $this->element('global_header') ?>
       <div class="container-fluid">
-          <?= $this->fetch('content') ?>
+        <?= $this->fetch('content') ?>
       </div>
     </div>
   </div>
