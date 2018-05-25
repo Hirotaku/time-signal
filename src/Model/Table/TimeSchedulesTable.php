@@ -79,7 +79,7 @@ class TimeSchedulesTable extends Table
      * 重複したデータが存在しないかチェック
      *
      */
-    public function isUniqueRegularSignal($saveData)
+    public function isUniqueRegularSignal($saveData, $type)
     {
         //dayを指定しているか
         $query = $this->find()
@@ -87,6 +87,11 @@ class TimeSchedulesTable extends Table
                 'day_of_week' => $saveData->day_of_week,
                 'time' => $saveData->time
             ]);
+
+        if ($type == 'edit') {
+            $query->where(['id IS NOT' => $saveData->id]);
+        }
+
         if (isset($saveData->day) && !is_null($saveData->day)) {
             $query->where(['day' => $saveData->day]);
         }

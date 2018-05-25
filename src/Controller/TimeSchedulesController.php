@@ -74,7 +74,7 @@ class TimeSchedulesController extends AppController
         if ($this->request->is('post')) {
             $timeSchedule = $this->TimeSchedules->patchEntity($timeSchedule, $this->request->getData());
 
-            if (!$this->TimeSchedules->isUniqueRegularSignal($timeSchedule)) {
+            if (!$this->TimeSchedules->isUniqueRegularSignal($timeSchedule, 'add')) {
                 $this->Flash->error(__('すでに同様の日時で設定されています'));
                 return $this->redirect(['action' => 'add']);
             }
@@ -106,7 +106,7 @@ class TimeSchedulesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $timeSchedule = $this->TimeSchedules->patchEntity($timeSchedule, $this->request->getData());
 
-            if (!$this->TimeSchedules->isUniqueRegularSignal($timeSchedule)) {
+            if (!$this->TimeSchedules->isUniqueRegularSignal($timeSchedule, 'edit')) {
                 $this->Flash->error(__('すでに同様の日時で設定されています'));
                 return $this->redirect(['action' => 'edit', $id]);
             }
